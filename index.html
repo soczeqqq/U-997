@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>U-997</title>
+
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+	<link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="style.css" type="text/css"/>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+</head>
+<body>
+	<div id="container">
+	<div class="container-fluid">
+		<div class="jumbotron jumbotron-fluid text-center bg-primary">
+			<h1>Zadanie 87 <i>"U-997"</i> w ramach projektu </h1>
+		</div>
+		<div class="row">
+	  		<div class="col-sm-4">
+	  			<form name = "myForm" id="myForm">
+	  				<label>Nazwa statku:</label><br>
+	  				<input type="text" class="form-control" id="nazwa" value="U_997">
+	  			<br>
+	  				<label>Prędkość w wynurzeniu:</label><br>
+	  				<input type="text" class="form-control" id = "vN" value="10">
+	  			<br>
+	  				<label>Prędkość w zanurzeniu:</label><br>
+	  				<input type="text" class="form-control" id = "vP" value="4">
+	  			<br>
+	  				<label>Wykorzystania silników(%): </label><br>
+	  				<input type="text" class="form-control" id = "wykSilnikow" value="100">
+	  			<br>
+	  				<label>Dzienne zużywanie się statku(%):</label><br>
+	  				<input type="text" class="form-control" id = "dZ" value="1">
+	  			<br>
+	  				<label>Początek rejsu:</label><br>
+	  				<input type="datetime-local" class="form-control" id = "pR" value="1945-05-03T00:00">
+	  			<br>
+	  				<label>Koniec rejsu:</label><br>
+	  				<input type="datetime-local" class="form-control" id = "kR" value="1945-08-18T00:00">
+	  			<br>
+	  				<label>Dzienny czas rejsu w zanurzeniu:</label><br>
+	  				<input type="text" class="form-control" id = "dCPW" value="20">
+	  			<br>
+	  				<label>Dzienny czas rejsu w wynurzeniu: </label><br>
+	  				<input type="text" class="form-control" id = "dCNW" value="4">
+	  			<br>
+	  				<label>Zmiana harmonogramu i postój ||
+	  					<input type="radio" class="form-control" onclick="postój()" name="radio" checked="true">
+
+	  				</label>
+	  				<label>Cykliczne przerwy
+	  					<input type="radio" class="form-control" onclick="cykliczne()" name="radio">
+
+	  				</label>
+	  			<br>
+					<div class="noweInputy">
+						<label id="">Data zmiany harmonogramu
+							<input class="form-control" id="zmianaHarmonogramu" type="datetime-local" value="1945-07-15T00:00">
+						</label>
+						<br>
+						<label id="">Dzienny czas rejsu w wynurzeniu: 
+							<input class="form-control" id="dCNW2" type="text" value="11">
+						</label>
+						<br>
+						<label id="">Dzienny czas rejsu w zanurzeniu:
+							<input class="form-control" id="dCPW2" type="text" value="0">
+						</label>
+						<br>
+						<label id="">Czas płynięcia w ostatnim dniu: 
+							<input class="form-control" id = "ostDzien" type="text" value="9">
+						</label>
+						<br>
+					</div>
+					<div class="noweInputy2 noweInputyNieWidoczne">
+						<label id="">Dzień tygodnia(1-7): 
+							<input class="form-control" id="dzien" type="number" value="7">
+						</label>
+						<br>
+						<label id="Czas: ">Czas przerwy w godzinach: 
+							<input class="form-control" id="czas" type="text" value="2">
+						</label>
+					</div>
+
+					<button class="btn btn-primary" type="button" onclick="myfunction()">Zatwierdź</button>
+					<br><br>
+
+	  			</form>
+
+	  		</div>
+
+	  		<div class="col-sm-7">
+	  			<div id="instrukcja">
+	  				<h1>INSTRUKCJA</h1>
+	  				<ol>
+	  					<li>Wpisz wszystkie parametry statku</li>
+	  					<li>Kliknij przycisk zatwierdź</li>
+	  					<li>Po prawej stronie pojawi się przycisk z nazwą statku</li>
+	  					<li>Po kliknięciu na nazwę danego statku ukaże się wykres drogi pokonanej przez statek w każdym dniu podróży</li>
+	  				</ol>
+	  				
+	  			</div>
+	  			<div id="polecenie1">
+	  				
+	  			</div>
+	  			<canvas id="myChart"></canvas>
+	  		</div>
+	  		<div class="col-sm-1 bg-secondary border border-dark">
+	  			<h3>Statki:</h3>
+	  			<div id="listaStatkow">
+	  				
+	  			</div>
+	  				
+	  		</div>
+		</div>
+		<div class="footer text-center bg-primary">Sebastian Soczawa 2020</div>
+	</div>
+</div>
+
+	<script type="text/javascript" src="script.js"></script>
+</body>
+</html>
